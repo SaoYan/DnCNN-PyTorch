@@ -1,6 +1,6 @@
 # DnCNN-PyTorch
 
-##This repository is under construction!
+This is a PyTorch implement of the TIP2017 paper [*Beyond a Gaussian Denoiser: Residual Learning of Deep CNN for Image Denoising*](http://ieeexplore.ieee.org/document/7839189/). The author's [MATLAB implement is here](https://github.com/cszn/DnCNN).
 
 ## How to run
 
@@ -45,7 +45,7 @@ python train.py \
 | Noise Level | DnCNN-S | DnCNN-B | DnCNN-S-PyTorch | DnCNN-B-PyTorch |
 |:-----------:|:-------:|:-------:|:---------------:|:---------------:|
 |     15      |  31.73  |  31.61  |      31.65      |      31.54      |
-|     25      |  29.23  |  29.16  |                 |      29.07      |
+|     25      |  29.23  |  29.16  |    (coming)     |      29.07      |
 |     50      |  26.23  |  26.23  |      26.19      |      26.12      |
 
 ### Set12 Average PSNR
@@ -53,5 +53,5 @@ python train.py \
 | Noise Level | DnCNN-S | DnCNN-B | DnCNN-S-PyTorch | DnCNN-B-PyTorch |
 |:-----------:|:-------:|:-------:|:---------------:|:---------------:|
 |     15      | 32.859  | 32.680  |     32.752      |     32.654      |
-|     25      | 30.436  | 30.362  |                 |     30.259      |
+|     25      | 30.436  | 30.362  |    (coming)     |     30.259      |
 |     50      | 27.178  | 27.206  |     27.142      |     27.062      |
