@@ -15,7 +15,7 @@ This is a PyTorch implement of the TIP2017 paper [*Beyond a Gaussian Denoiser: R
 ```
 python train.py \
   --preprocess True \
-  --num_of_layers 17  \
+  --num_of_layers 17 \
   --mode S \
   --noiseL 25 \
   --val_noiseL 25
@@ -29,7 +29,7 @@ python train.py \
 ```
 python train.py \
   --preprocess True \
-  --num_of_layers 20  \
+  --num_of_layers 20 \
   --mode B \
   --val_noiseL 25
 ```
@@ -37,6 +37,19 @@ python train.py \
 * If you've already built the training and validation dataset (i.e. train.h5 & val.h5 files), set *preprocess* to be False.
 * According to the paper, DnCNN-B has 20 layers.
 * *noiseL* is ingnored when training DnCNN-B. You can set *val_noiseL* to whatever you need.
+
+### 4. Test
+```
+python test.py \
+  --num_of_layers 17 \
+  --logdir logs/DnCNN-S-15 \
+  --test_data Set12 \
+  --test_noiseL 15
+```
+**NOTE**
+* Set *num_of_layers* to be 17 when testing DnCNN-S models. Set *num_of_layers* to be 20 when testing DnCNN-B model.
+* *test_data* can be *Set12* or *Set68*.
+* *test_noiseL* is used for testing. This should be set according to which model your want to test (i.e. *logdir*).
 
 ## Test Results
 
