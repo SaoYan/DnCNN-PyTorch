@@ -1,2 +1,4 @@
 # DnCNN-PyTorch
-PyTorch implement of the TIP2017 paper "Beyond a Gaussian Denoiser: Residual Learning of Deep CNN for Image Denoising"
+[![GNU](https://img.shields.io/aur/license/yaourt.svg?style=plastic)](LICENSE)
+
+This repository is under construction!
