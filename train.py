@@ -108,9 +108,9 @@ def main():
         writer.add_scalar('PSNR on validation data', psnr_val, epoch)
         # log the images
         out_train = torch.clamp(imgn_train-model(imgn_train), 0., 1.)
-        Img = make_grid(img_train.data, nrow=8, normalize=True, scale_each=True)
-        Imgn = make_grid(imgn_train.data, nrow=8, normalize=True, scale_each=True)
-        Irecon = make_grid(out_train.data, nrow=8, normalize=True, scale_each=True)
+        Img = utils.make_grid(img_train.data, nrow=8, normalize=True, scale_each=True)
+        Imgn = utils.make_grid(imgn_train.data, nrow=8, normalize=True, scale_each=True)
+        Irecon = utils.make_grid(out_train.data, nrow=8, normalize=True, scale_each=True)
         writer.add_image('clean image', Img, epoch)
         writer.add_image('noisy image', Imgn, epoch)
         writer.add_image('reconstructed image', Irecon, epoch)

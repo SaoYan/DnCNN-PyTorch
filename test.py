@@ -10,7 +10,7 @@ from models import DnCNN
 from utils import *
 
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
-os.environ["CUDA_VISIBLE_DEVICES"] = "7"
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 parser = argparse.ArgumentParser(description="DnCNN_Test")
 parser.add_argument("--num_of_layers", type=int, default=17, help="Number of total layers")
@@ -47,11 +47,10 @@ def main():
         noise = torch.FloatTensor(ISource.size()).normal_(mean=0, std=opt.test_noiseL/255.)
         # noisy image
         INoisy = ISource + noise
-        ISource, INoisy = Variable(ISource.cuda(), volatile=True), Variable(INoisy.cuda(), volatile=True)
+        ISource, INoisy = Variable(ISource.cuda()), Variable(INoisy.cuda())
         # denoise
-        # with torch.no_grad():
-            # Out = torch.clamp(INoisy-model(INoisy), 0., 1.)
-        Out = torch.clamp(INoisy-model(INoisy), 0., 1.)
+        with torch.no_grad(): # this can save much memory
+            Out = torch.clamp(INoisy-model(INoisy), 0., 1.)
         psnr = batch_PSNR(Out, ISource, 1.)
         psnr_test += psnr
         print("%s PSNR %f" % (f, psnr))
