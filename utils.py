@@ -3,7 +3,6 @@ import torch
 import torch.nn as nn
 import numpy as np
 from skimage.measure.simple_metrics import compare_psnr
-irange = range
 
 def weights_init_kaiming(m):
     classname = m.__class__.__name__
