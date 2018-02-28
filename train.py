@@ -77,7 +77,7 @@ def main():
             img_train, imgn_train = Variable(img_train.cuda()), Variable(imgn_train.cuda())
             noise = Variable(noise.cuda())
             out_train = model(imgn_train)
-            loss = criterion(out_train, noise) / (noise.size()[0]*2)
+            loss = criterion(out_train, noise) / (imgn_train.size()[0]*2)
             loss.backward()
             optimizer.step()
             # results

@@ -71,3 +71,28 @@ Experients are still going on. The performance of PyTorch implementation may be 
 |     15      | 32.859  | 32.680  |     32.752      |     32.654      |
 |     25      | 30.436  | 30.362  |     30.412      |     30.259      |
 |     50      | 27.178  | 27.206  |     27.142      |     27.062      |
+
+## Tricks useful for boosting performance
+* Parameter initialization:  
+Use *kaiming_normal* initialization for *Conv*; Pay attention to the initialization of *BatchNorm*
+```
+def weights_init_kaiming(m):
+    classname = m.__class__.__name__
+    if classname.find('Conv') != -1:
+        nn.init.kaiming_normal(m.weight.data, a=0, mode='fan_in')
+    elif classname.find('Linear') != -1:
+        nn.init.kaiming_normal(m.weight.data, a=0, mode='fan_in')
+    elif classname.find('BatchNorm') != -1:
+        m.weight.data.normal_(mean=0, std=math.sqrt(2./9./64.)).clamp_(-0.025,0.025)
+        nn.init.constant(m.bias.data, 0.0)
+```
+* The definition of loss function  
+Set *size_average* to be False when defining the loss function. When *size_average=True*, the **pixel-wise average** will be computed, but what we need is **sample-wise average**.
+```
+criterion = nn.MSELoss(size_average=False)
+```
+The computation of loss will be like:
+```
+loss = criterion(out_train, noise) / (imgn_train.size()[0]*2)
+```
+where we divide the sum over one batch of samples by *2N*, with *N* being # samples.
