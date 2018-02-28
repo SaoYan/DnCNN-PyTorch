@@ -22,7 +22,6 @@ parser.add_argument("--num_of_layers", type=int, default=17, help="Number of tot
 parser.add_argument("--epochs", type=int, default=50, help="Number of training epochs")
 parser.add_argument("--milestone", type=int, default=30, help="When to decay learning rate; should be less than epochs")
 parser.add_argument("--lr", type=float, default=1e-3, help="Initial learning rate")
-parser.add_argument("--weight_decay", type=float, default=1e-4, help="Weight decay")
 parser.add_argument("--outf", type=str, default="logs", help='path of log files')
 parser.add_argument("--mode", type=str, default="S", help='with known noise level (S) or blind training (B)')
 parser.add_argument("--noiseL", type=float, default=25, help='noise level; ignored when mode=B')
@@ -45,7 +44,7 @@ def main():
     model = nn.DataParallel(net, device_ids=device_ids).cuda()
     criterion.cuda()
     # Optimizer
-    optimizer = optim.Adam(model.parameters(), lr=opt.lr, weight_decay=opt.weight_decay)
+    optimizer = optim.Adam(model.parameters(), lr=opt.lr)
     # training
     writer = SummaryWriter(opt.outf)
     step = 0

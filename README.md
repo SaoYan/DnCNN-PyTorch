@@ -52,6 +52,8 @@ python test.py \
 * *test_noiseL* is used for testing. This should be set according to which model your want to test (i.e. *logdir*).
 
 ## Test Results
+**NOTE**
+Experients are still going on. The performance of PyTorch implementation may be further boosted.
 
 ### BSD68 Average RSNR
 
