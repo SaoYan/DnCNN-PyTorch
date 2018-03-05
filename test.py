@@ -47,10 +47,12 @@ def main():
         noise = torch.FloatTensor(ISource.size()).normal_(mean=0, std=opt.test_noiseL/255.)
         # noisy image
         INoisy = ISource + noise
-        ISource, INoisy = Variable(ISource.cuda()), Variable(INoisy.cuda())
-        # denoise
-        with torch.no_grad(): # this can save much memory
-            Out = torch.clamp(INoisy-model(INoisy), 0., 1.)
+        ISource, INoisy = Variable(ISource.cuda(),volatile=True), Variable(INoisy.cuda(),volatile=True)
+        Out = torch.clamp(INoisy-model(INoisy), 0., 1.)
+        ## for some version of PyTorch, volatile is eliminated, use torch.no_grad() instead
+        # ISource, INoisy = Variable(ISource.cuda()), Variable(INoisy.cuda())
+        # with torch.no_grad(): # this can save much memory
+        #     Out = torch.clamp(INoisy-model(INoisy), 0., 1.)
         psnr = batch_PSNR(Out, ISource, 1.)
         psnr_test += psnr
         print("%s PSNR %f" % (f, psnr))
