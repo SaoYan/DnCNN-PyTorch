@@ -85,10 +85,11 @@ def main():
             out_train = torch.clamp(imgn_train-model(imgn_train), 0., 1.)
             psnr_train = batch_PSNR(out_train, img_train, 1.)
             print("[epoch %d][%d/%d] loss: %.4f PSNR_train: %.4f" %
-                (epoch+1, i+1, len(loader_train), loss.data[0], psnr_train))
+                (epoch+1, i+1, len(loader_train), loss.item(), psnr_train))
+            # if you are using older version of PyTorch, you may need to change loss.item() to loss.data[0]
             if step % 10 == 0:
                 # Log the scalar values
-                writer.add_scalar('loss', loss.data[0], step)
+                writer.add_scalar('loss', loss.item(), step)
                 writer.add_scalar('PSNR on training data', psnr_train, step)
             step += 1
         ## the end of each epoch
