@@ -6,7 +6,7 @@ This is a PyTorch implementation of the TIP2017 paper [*Beyond a Gaussian Denois
 ## How to run
 
 ### 1. Dependences
-* [PyTorch](http://pytorch.org/)
+* [PyTorch](http://pytorch.org/)(<0.4)
 * [torchvision](https://github.com/pytorch/vision)
 * OpenCV for Python
 * [HDF5 for Python](http://www.h5py.org/)
