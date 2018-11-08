@@ -3,6 +3,11 @@
 
 This is a PyTorch implementation of the TIP2017 paper [*Beyond a Gaussian Denoiser: Residual Learning of Deep CNN for Image Denoising*](http://ieeexplore.ieee.org/document/7839189/). The author's [MATLAB implementation is here](https://github.com/cszn/DnCNN).
 
+****
+This code was written with PyTorch<0.4, but most people must be using PyTorch>=0.4 today. Migrating the code is easy. Please refer to [PyTorch 0.4.0 Migration Guide](https://pytorch.org/blog/pytorch-0_4_0-migration-guide/).
+
+****
+
 ## How to run
 
 ### 1. Dependences
