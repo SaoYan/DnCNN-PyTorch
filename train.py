@@ -100,7 +100,7 @@ def main():
             img_val = torch.unsqueeze(dataset_val[k], 0)
             noise = torch.FloatTensor(img_val.size()).normal_(mean=0, std=opt.val_noiseL/255.)
             imgn_val = img_val + noise
-            img_val, imgn_val = Variable(img_val.cuda()), Variable(imgn_val.cuda())
+            img_val, imgn_val = Variable(img_val.cuda(), volatile=True), Variable(imgn_val.cuda(), volatile=True)
             out_val = torch.clamp(imgn_val-model(imgn_val), 0., 1.)
             psnr_val += batch_PSNR(out_val, img_val, 1.)
         psnr_val /= len(dataset_val)
